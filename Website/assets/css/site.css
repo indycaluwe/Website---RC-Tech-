@@ -432,3 +432,5 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 .nav a { white-space: nowrap; padding: .55rem .65rem; }
 .header-call { white-space: nowrap; }
 .hero--page.hero--plain .container { padding: clamp(2.5rem, 6vw, 4rem) 0; }
+.feat-photos img { aspect-ratio: 3 / 4; }
+.before-after img { object-position: center 30%; }
