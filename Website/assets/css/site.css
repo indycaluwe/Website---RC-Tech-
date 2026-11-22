@@ -413,3 +413,5 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 .compare { table-layout: fixed; }
 .compare th, .compare td { width: 36%; }
 .compare th:first-child { width: 28%; }
+.werkgebied p { max-width: 46rem; margin-inline: auto; color: var(--muted); }
+.werkgebied .tags { justify-content: center; }
