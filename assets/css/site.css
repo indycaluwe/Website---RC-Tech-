@@ -514,10 +514,21 @@ body.cta-hidden .mobile-cta { transform: translateY(110%); }
 .hero--home .btn-row { margin-top: 0; }
 @media (max-width: 720px) { .hero--home .lead { margin-bottom: 1.75rem; } .hero--home .btn-row { margin-top: 0; } }
 
-/* Mobile: homepage hero fills the whole first screen */
+/* Mobile: homepage hero fills the first screen, content anchored at the bottom */
 @media (max-width: 720px) {
-  .hero--home { min-height: calc(100vh - 74px); min-height: calc(100svh - 74px); display: flex; align-items: center; }
-  .hero--home .container { width: min(100% - 2.5rem, var(--max)); padding-top: 2rem; padding-bottom: 5rem; }
-  .hero--home .lead { margin-bottom: 2.5rem; }
-  .hero--home .trust { margin-top: 2.25rem; }
+  .hero--home { min-height: calc(100vh - 74px); min-height: calc(100svh - 74px); display: flex; align-items: flex-end; }
+  .hero--home .container { width: min(100% - 2.5rem, var(--max)); padding-top: 3rem; padding-bottom: 5.5rem; }
+  .hero--video::after { background: linear-gradient(180deg, rgba(17,17,17,.15) 0%, rgba(17,17,17,.45) 35%, rgba(17,17,17,.85) 65%, rgba(17,17,17,.95) 100%); }
+  .hero--home h1 { margin-bottom: .75rem; }
+  .hero--home .lead { margin-bottom: 1.5rem; }
+  .hero--home .btn-row { flex-direction: column; gap: .7rem; }
+  .hero--home .btn-row .btn { width: 100%; justify-content: center; }
+  .hero--home .trust { display: flex; flex-direction: column; gap: .45rem; margin-top: 1.5rem; }
+  .hero--home .trust div { border-left: 0; padding: 0 0 0 1.35rem; position: relative; display: flex; gap: .35rem; align-items: baseline; }
+  .hero--home .trust div::before { content: ""; position: absolute; left: 0; top: .4em; width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); }
+  .hero--home .trust strong { display: inline; font-size: .95rem; }
+  .hero--home .trust span { font-size: .95rem; color: #d9d6d2; }
+  .scroll-down { bottom: 1.1rem; width: 40px; height: 40px; }
 }
+/* Cookie badge bottom-right, away from the scroll arrow */
+#cookiescript_badge { left: auto !important; right: 15px !important; }
