@@ -503,3 +503,8 @@ body.cta-hidden .mobile-cta { transform: translateY(110%); }
   .hero--video::after { background: linear-gradient(180deg, rgba(17,17,17,.45) 0%, rgba(17,17,17,.6) 45%, rgba(17,17,17,.82) 100%); }
   .hero--video h1, .hero--video .lead { text-shadow: 0 2px 12px rgba(0,0,0,.75); }
 }
+
+/* Bigger logo */
+.site-header .container { min-height: 84px; }
+.logo img { height: 62px; width: auto; }
+@media (max-width: 720px) { .site-header .container { min-height: 74px; } .logo img { height: 54px; } }
