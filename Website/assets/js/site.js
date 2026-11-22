@@ -156,6 +156,15 @@
     });
   }
 
+  // Homepage: hide the mobile call bar while the hero is visible
+  var heroHome = document.querySelector('.hero--home');
+  if (heroHome && 'IntersectionObserver' in window) {
+    document.body.classList.add('cta-hidden');
+    new IntersectionObserver(function (entries) {
+      document.body.classList.toggle('cta-hidden', entries[0].isIntersecting);
+    }, { threshold: 0.15 }).observe(heroHome);
+  }
+
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();
