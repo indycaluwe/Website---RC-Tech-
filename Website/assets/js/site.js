@@ -158,11 +158,14 @@
 
   // Homepage: hide the mobile call bar while the hero is visible
   var heroHome = document.querySelector('.hero--home');
-  if (heroHome && 'IntersectionObserver' in window) {
-    document.body.classList.add('cta-hidden');
-    new IntersectionObserver(function (entries) {
-      document.body.classList.toggle('cta-hidden', entries[0].isIntersecting);
-    }, { threshold: 0.15 }).observe(heroHome);
+  if (heroHome) {
+    var updateCta = function () {
+      // show the bar once most of the hero has scrolled out of view
+      document.body.classList.toggle('cta-hidden', heroHome.getBoundingClientRect().bottom > 120);
+    };
+    updateCta();
+    window.addEventListener('scroll', updateCta, { passive: true });
+    window.addEventListener('resize', updateCta);
   }
 
   var y = document.getElementById('year');

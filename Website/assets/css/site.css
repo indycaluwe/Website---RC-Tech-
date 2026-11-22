@@ -487,3 +487,13 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 /* Mobile call bar: hidden while the homepage hero is on screen */
 .mobile-cta { transition: transform .3s ease; }
 body.cta-hidden .mobile-cta { transform: translateY(110%); }
+
+/* Roadmaps on mobile: centered dots connected by a vertical line */
+@media (max-width: 560px) {
+  .roadmap { flex-direction: column; align-items: center; gap: 1.6rem; }
+  .roadmap li { display: block; text-align: center; padding: 0; width: 100%; max-width: 18rem; }
+  .roadmap li::before { margin: 0 auto .5rem; }
+  .roadmap li + li::after { display: block; top: -1.6rem; right: auto; left: 50%; width: 3px; height: 1.6rem; transform: translateX(-50%); opacity: .5; }
+  .roadmap--detail details summary::after { display: block; margin: .2rem 0 0; }
+  .roadmap--detail details p { margin: .4rem auto 0; }
+}
