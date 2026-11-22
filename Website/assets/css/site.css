@@ -355,3 +355,14 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 .video-dialog { border: 0; padding: 0; background: transparent; max-width: 94vw; }
 .video-dialog::backdrop { background: rgba(0,0,0,.9); }
 .video-dialog video { max-height: 86vh; max-width: 94vw; border-radius: 8px; display: block; }
+
+/* Featured project on the projects page */
+.featured h2 { max-width: 30ch; }
+.feat-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.feat-photos img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
+.feat-photos figcaption b { color: var(--accent-text); }
+.feat-story { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.feat-story h3 { font-size: 1.05rem; margin-bottom: .3rem; }
+.feat-story p { color: var(--muted); margin: 0; }
+.featured .btn--ghost { color: var(--ink); }
+@media (max-width: 720px) { .feat-photos { grid-template-columns: 1fr 1fr 1fr; gap: .5rem; } .feat-story { grid-template-columns: 1fr; gap: 1rem; } }
