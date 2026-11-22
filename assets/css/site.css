@@ -483,3 +483,7 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 .machine-pills span { color: var(--muted); }
 .panel-note { font-size: .95rem; margin: 0; padding-top: 1rem; border-top: 1px solid var(--line); }
 .panel-note b { color: var(--ink); }
+
+/* Mobile call bar: hidden while the homepage hero is on screen */
+.mobile-cta { transition: transform .3s ease; }
+body.cta-hidden .mobile-cta { transform: translateY(110%); }
