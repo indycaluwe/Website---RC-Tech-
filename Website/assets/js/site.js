@@ -156,6 +156,20 @@
     });
   }
 
+  // Hero video: make autoplay work on as many phones as possible
+  var hv = document.querySelector('.hero--video video');
+  if (hv) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    hv.muted = true; hv.defaultMuted = true; hv.setAttribute('muted', ''); hv.playsInline = true;
+    var tryPlay = function () { if (reduce) return; var p = hv.play(); if (p && p.catch) p.catch(function () {}); };
+    if (reduce) { hv.removeAttribute('autoplay'); hv.pause(); } else { tryPlay(); }
+    // some phones (power saving) only allow playback after the first touch or scroll
+    ['touchstart', 'scroll', 'click'].forEach(function (ev) {
+      window.addEventListener(ev, function once() { if (hv.paused) tryPlay(); window.removeEventListener(ev, once); }, { passive: true });
+    });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden && hv.paused) tryPlay(); });
+  }
+
   // Homepage: hide the mobile call bar while the hero is visible
   var heroHome = document.querySelector('.hero--home');
   if (heroHome) {
