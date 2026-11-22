@@ -513,3 +513,11 @@ body.cta-hidden .mobile-cta { transform: translateY(110%); }
 .hero--home .lead { margin-bottom: 2.25rem; }
 .hero--home .btn-row { margin-top: 0; }
 @media (max-width: 720px) { .hero--home .lead { margin-bottom: 1.75rem; } .hero--home .btn-row { margin-top: 0; } }
+
+/* Mobile: homepage hero fills the whole first screen */
+@media (max-width: 720px) {
+  .hero--home { min-height: calc(100vh - 74px); min-height: calc(100svh - 74px); display: flex; align-items: center; }
+  .hero--home .container { width: min(100% - 2.5rem, var(--max)); padding-top: 2rem; padding-bottom: 5rem; }
+  .hero--home .lead { margin-bottom: 2.5rem; }
+  .hero--home .trust { margin-top: 2.25rem; }
+}
