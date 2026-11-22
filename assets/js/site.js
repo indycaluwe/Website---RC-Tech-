@@ -10,6 +10,18 @@
     });
   }
 
+  // Diensten dropdown (click/tap + Escape)
+  document.querySelectorAll('.nav-drop').forEach(function (d) {
+    var b = d.querySelector('.nav-drop-btn');
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = d.classList.toggle('open');
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) { if (!d.contains(e.target)) { d.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { d.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); } });
+  });
+
   // Lightbox for project galleries
   var links = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
   if (links.length && window.HTMLDialogElement) {
