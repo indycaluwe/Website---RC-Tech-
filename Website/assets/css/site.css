@@ -366,3 +366,27 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 .feat-story p { color: var(--muted); margin: 0; }
 .featured .btn--ghost { color: var(--ink); }
 @media (max-width: 720px) { .feat-photos { grid-template-columns: 1fr 1fr 1fr; gap: .5rem; } .feat-story { grid-template-columns: 1fr; gap: 1rem; } }
+
+/* --- Portfolio layout (all projects): clean photo grid, tall + stacked pattern --- */
+.portfolio-head { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 2rem; }
+@media (max-width: 860px) { .portfolio-head { grid-template-columns: 1fr; gap: .5rem; } }
+.dash-title { font-size: clamp(2.2rem, 5vw, 3.5rem); margin: 0; position: relative; padding-left: 1.6rem; }
+.dash-title::before { content: ""; position: absolute; left: 0; bottom: .25em; width: 1.1rem; height: 5px; background: var(--accent); }
+.portfolio-head p { color: var(--muted); font-size: 1.15rem; line-height: 1.9; margin: 0; }
+.portfolio-head a { color: var(--accent-text); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); }
+.portfolio-head a:hover { color: var(--ink); }
+
+.portfolio .pgrid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 230px; grid-auto-flow: dense; gap: 2rem; }
+.portfolio .pcard { background: none; border: 0; border-radius: 0; box-shadow: none; overflow: visible; }
+.portfolio .pcard:nth-child(4n+1), .portfolio .pcard:nth-child(4n+4) { grid-row: span 2; }
+.portfolio .pcard-media { height: 100%; border-radius: 0; }
+.portfolio .pcard-media img { height: 100%; aspect-ratio: auto; }
+.pover { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem 1rem 1rem; color: #fff; text-align: left; background: linear-gradient(transparent, rgba(0,0,0,.8)); display: flex; flex-direction: column; gap: .15rem; opacity: 0; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease; }
+.pover b { font-size: 1rem; line-height: 1.3; }
+.pover small { display: inline-flex; align-items: center; gap: .35rem; font-size: .8rem; opacity: .9; }
+.pover small svg { width: 14px; height: 14px; }
+.pover .ptag { color: var(--accent); }
+.pcard-media:hover .pover, .pcard-media:focus-visible .pover { opacity: 1; transform: none; }
+@media (hover: none) { .pover { opacity: 1; transform: none; } }
+@media (max-width: 900px) { .portfolio .pgrid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; gap: 1rem; } }
+@media (max-width: 560px) { .portfolio .pgrid { grid-template-columns: 1fr; grid-auto-rows: 240px; } .portfolio .pcard:nth-child(n) { grid-row: span 1; } }
