@@ -71,7 +71,7 @@ ul, ol { padding-left: 1.2em; }
 .header-call { margin-left: .5rem; }
 .nav-toggle { display: none; margin-left: auto; background: none; border: 2px solid #8b8884; color: #fff; border-radius: 8px; padding: .45rem .6rem; cursor: pointer; }
 .nav-toggle svg { width: 24px; height: 24px; display: block; }
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .nav-toggle { display: block; }
   .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--brand); flex-direction: column; align-items: stretch; padding: .5rem 1.25rem 1.25rem; margin: 0; border-top: 1px solid #3d3b38; }
   .nav.open { display: flex; }
@@ -428,3 +428,7 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
   .roadmap--detail details summary::after { display: inline; margin-left: .4rem; }
   .roadmap--detail details p { margin-left: 0; }
 }
+
+.nav a { white-space: nowrap; padding: .55rem .65rem; }
+.header-call { white-space: nowrap; }
+.hero--page.hero--plain .container { padding: clamp(2.5rem, 6vw, 4rem) 0; }
