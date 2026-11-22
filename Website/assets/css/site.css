@@ -370,8 +370,8 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 /* --- Portfolio layout (all projects): clean photo grid, tall + stacked pattern --- */
 .portfolio-head { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 2rem; }
 @media (max-width: 860px) { .portfolio-head { grid-template-columns: 1fr; gap: .5rem; } }
-.dash-title { font-size: clamp(2.2rem, 5vw, 3.5rem); margin: 0; position: relative; padding-left: 1.6rem; }
-.dash-title::before { content: ""; position: absolute; left: 0; bottom: .25em; width: 1.1rem; height: 5px; background: var(--accent); }
+.dash-title { font-size: clamp(2.2rem, 5vw, 3.5rem); margin: 0; }
+
 .portfolio-head p { color: var(--muted); font-size: 1.15rem; line-height: 1.9; margin: 0; }
 .portfolio-head a { color: var(--accent-text); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); }
 .portfolio-head a:hover { color: var(--ink); }
@@ -392,3 +392,24 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 @media (max-width: 560px) { .portfolio .pgrid { grid-template-columns: 1fr; grid-auto-rows: 240px; } .portfolio .pcard:nth-child(n) { grid-row: span 1; } }
 .example-link { display: inline-block; margin-top: .35rem; font-weight: 700; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent); }
 .example-link:hover { color: var(--accent-text); }
+
+/* --- Kennis / blog --- */
+.article { max-width: 760px; }
+.article h2 { margin-top: 2.25rem; }
+.article ol li, .article ul li { margin-bottom: .4rem; }
+.summary-box { background: #fff4ec; border-left: 5px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.25rem 1.4rem; }
+.summary-box h2 { margin: 0 0 .4rem; font-size: 1.15rem; }
+.summary-box p { margin: 0; }
+.article-img { margin: 2rem 0 0; }
+.article-img img { border-radius: var(--radius); width: 100%; max-height: 440px; object-fit: cover; }
+.table-wrap { overflow-x: auto; }
+.compare th, .compare td { vertical-align: top; }
+.compare thead th { background: var(--brand); color: #fff; }
+.compare tbody th { width: 30%; }
+.article-meta { color: var(--muted); font-size: .9rem; margin-top: 2rem; }
+.h3-like { font-size: 1.15rem; margin: .35rem 0 .4rem; }
+.h3-like a { text-decoration: none; }
+.h3-like a:hover { color: var(--accent-text); }
+.compare { table-layout: fixed; }
+.compare th, .compare td { width: 36%; }
+.compare th:first-child { width: 28%; }
