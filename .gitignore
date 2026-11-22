@@ -1,0 +1,16 @@
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Temporary & Incomplete Downloads
+*.crdownload
+*.part
+
+# Windows Shortcuts
+*.lnk
+
+# Editor / IDE settings
+.vscode/
+.idea/
