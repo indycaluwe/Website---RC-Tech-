@@ -508,3 +508,8 @@ body.cta-hidden .mobile-cta { transform: translateY(110%); }
 .site-header .container { min-height: 84px; }
 .logo img { height: 62px; width: auto; }
 @media (max-width: 720px) { .site-header .container { min-height: 74px; } .logo img { height: 54px; } }
+
+/* More breathing room under the homepage hero sentence */
+.hero--home .lead { margin-bottom: 2.25rem; }
+.hero--home .btn-row { margin-top: 0; }
+@media (max-width: 720px) { .hero--home .lead { margin-bottom: 1.75rem; } .hero--home .btn-row { margin-top: 0; } }
