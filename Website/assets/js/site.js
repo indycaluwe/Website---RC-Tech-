@@ -26,8 +26,9 @@
       idx = (i + set.length) % set.length;
       var a = set[idx], t = a.querySelector('img');
       img.src = a.getAttribute('href');
-      img.alt = t ? t.alt : '';
-      cap.textContent = t ? t.alt : '';
+      var c = a.getAttribute('data-caption') || (t ? t.alt : '');
+      img.alt = c;
+      cap.textContent = c;
     }
     links.forEach(function (a) {
       a.addEventListener('click', function (e) {
@@ -105,6 +106,41 @@
         '&body=' + encodeURIComponent(lines.join('\n'));
       var ok = document.getElementById('form-ok');
       if (ok) ok.hidden = false;
+    });
+  }
+
+  // Project filters
+  var chips = document.querySelectorAll('.chip[data-filter]');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.getAttribute('data-filter');
+      chips.forEach(function (c) { var on = c === chip; c.classList.toggle('is-active', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      document.querySelectorAll('.pcard').forEach(function (card) {
+        var cats = (card.getAttribute('data-cat') || '').split(' ');
+        card.hidden = !(f === 'all' || cats.indexOf(f) !== -1);
+      });
+    });
+  });
+
+  // Project videos open in a player dialog
+  var vbtns = document.querySelectorAll('[data-video]');
+  if (vbtns.length && window.HTMLDialogElement) {
+    var vd = document.createElement('dialog');
+    vd.className = 'video-dialog';
+    vd.setAttribute('aria-label', 'Video');
+    vd.innerHTML = '<video controls playsinline></video><button class="lb-close" type="button" aria-label="Sluiten">×</button>';
+    document.body.appendChild(vd);
+    var vel = vd.querySelector('video');
+    function closeV() { vel.pause(); vd.close(); }
+    vd.querySelector('.lb-close').addEventListener('click', closeV);
+    vd.addEventListener('click', function (e) { if (e.target === vd) closeV(); });
+    vd.addEventListener('close', function () { vel.pause(); });
+    vbtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        vel.src = b.getAttribute('data-video');
+        vd.showModal();
+        var p = vel.play(); if (p && p.catch) p.catch(function () {});
+      });
     });
   }
 
