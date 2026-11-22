@@ -10,6 +10,56 @@
     });
   }
 
+  // ---- Analytics events (GA4 via gtag + dataLayer for GTM) ----
+  // Only sent once the visitor accepted cookies: gtag/GTM load after consent.
+  window.dataLayer = window.dataLayer || [];
+  function track(name, params) {
+    params = params || {};
+    params.page_path = location.pathname;
+    try { if (typeof window.gtag === 'function') window.gtag('event', name, params); } catch (e) {}
+    var o = { event: 'rc_' + name }; for (var k in params) o[k] = params[k];
+    window.dataLayer.push(o);
+  }
+  function placeOf(el) {
+    if (el.closest('.site-header')) return 'header';
+    if (el.closest('.mobile-cta')) return 'mobile_bar';
+    if (el.closest('.hero')) return 'hero';
+    if (el.closest('.cta-band')) return 'cta_band';
+    if (el.closest('.site-footer')) return 'footer';
+    if (el.closest('.email-box, .contact-list')) return 'contact_page';
+    if (el.closest('.featured')) return 'best_example';
+    return 'content';
+  }
+  // Leads: phone and e-mail clicks
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+    if (!a) return;
+    var method = a.getAttribute('href').indexOf('tel:') === 0 ? 'phone' : 'email';
+    track('generate_lead', { method: method, location: placeOf(a), link_text: (a.textContent || '').trim().slice(0, 60) });
+  });
+  // Internal CTA and machine/service link clicks
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('.btn, .card-link, .machine-pills a, .machine-list a, .related a, .example-link, .nav-drop-menu a');
+    if (!a || /^(tel|mailto):/.test(a.getAttribute('href') || '')) return;
+    track('cta_click', { link_url: a.getAttribute('href'), link_text: (a.textContent || '').trim().slice(0, 60), location: placeOf(a) });
+  });
+  // Fold-outs: FAQ, steps, benefits
+  document.querySelectorAll('details').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      var s = d.querySelector('summary');
+      var kind = d.closest('.faq') ? 'faq' : d.closest('.roadmap') ? 'step' : d.classList.contains('benefit') ? 'benefit' : 'details';
+      track('expand_content', { content_type: kind, label: s ? s.textContent.trim().slice(0, 80) : '' });
+    });
+  });
+  // Scroll depth 25/50/75/100
+  var marks = [25, 50, 75, 100], sent = {};
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement.scrollHeight - innerHeight; if (h <= 0) return;
+    var pct = Math.round(scrollY / h * 100);
+    marks.forEach(function (m) { if (pct >= m && !sent[m]) { sent[m] = 1; track('scroll_depth', { percent: m }); } });
+  }, { passive: true });
+
   // Diensten dropdown (click/tap + Escape)
   document.querySelectorAll('.nav-drop').forEach(function (d) {
     var b = d.querySelector('.nav-drop-btn');
@@ -17,6 +67,7 @@
       e.stopPropagation();
       var open = d.classList.toggle('open');
       b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) track('menu_open', { menu: 'diensten' });
     });
     document.addEventListener('click', function (e) { if (!d.contains(e.target)) { d.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); } });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { d.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); } });
@@ -49,6 +100,7 @@
         set = links.filter(function (l) { return l.getAttribute('data-lightbox') === g; });
         show(set.indexOf(a));
         dlg.showModal();
+        track('view_project_photos', { gallery: g, label: (a.getAttribute('data-caption') || '').slice(0, 80) });
       });
     });
     dlg.querySelector('.lb-prev').addEventListener('click', function () { show(idx - 1); });
@@ -126,6 +178,7 @@
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
       var f = chip.getAttribute('data-filter');
+      track('project_filter', { filter: f });
       chips.forEach(function (c) { var on = c === chip; c.classList.toggle('is-active', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); });
       document.querySelectorAll('.pcard').forEach(function (card) {
         var cats = (card.getAttribute('data-cat') || '').split(' ');
@@ -151,6 +204,7 @@
       b.addEventListener('click', function () {
         vel.src = b.getAttribute('data-video');
         vd.showModal();
+        track('video_start', { video_title: b.getAttribute('aria-label') || '', video_url: b.getAttribute('data-video') });
         var p = vel.play(); if (p && p.catch) p.catch(function () {});
       });
     });
