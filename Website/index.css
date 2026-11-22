@@ -317,3 +317,49 @@ footer a{
   text-decoration: none;
   transition: all 0.6s; 
 }
+/* --- Upgrades: call button, section spacing, CTA --- */
+.btn-call {
+  color: #262524;
+  background-color: #F2F2F2;
+  border-color: #F2F2F2;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.btn-call:hover,
+.btn-call:focus {
+  color: #262524 !important;
+  background-color: #BFBEBD;
+}
+main section + section {
+  margin-top: 2.5rem;
+}
+.HuisKleur .btn-light:hover,
+.HuisKleur .btn-outline-light:hover {
+  color: #262524 !important;
+}
+
+/* --- Hero readability --- */
+header .hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65));
+}
+header h1,
+header .hero-tagline,
+header .hero-sub {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+header .hero-tagline {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+header .hero-sub {
+  font-weight: 500;
+  max-width: 40rem;
+  margin: 0 auto;
+}
