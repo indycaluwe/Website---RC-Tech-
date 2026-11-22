@@ -317,3 +317,23 @@ footer a{
   text-decoration: none;
   transition: all 0.6s; 
 }
+/* --- Upgrades: call button, section spacing, CTA --- */
+.btn-call {
+  color: #262524;
+  background-color: #F2F2F2;
+  border-color: #F2F2F2;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.btn-call:hover,
+.btn-call:focus {
+  color: #262524 !important;
+  background-color: #BFBEBD;
+}
+main section + section {
+  margin-top: 2.5rem;
+}
+.HuisKleur .btn-light:hover,
+.HuisKleur .btn-outline-light:hover {
+  color: #262524 !important;
+}
