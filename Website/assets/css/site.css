@@ -415,3 +415,16 @@ video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius
 .compare th:first-child { width: 28%; }
 .werkgebied p { max-width: 46rem; margin-inline: auto; color: var(--muted); }
 .werkgebied .tags { justify-content: center; }
+
+/* Roadmap with fold-open steps (kotteren page) */
+.roadmap--detail li { font-weight: 400; }
+.roadmap--detail details summary { list-style: none; cursor: pointer; font-weight: 700; font-size: .98rem; }
+.roadmap--detail details summary::-webkit-details-marker { display: none; }
+.roadmap--detail details summary::after { content: "+"; display: block; color: var(--accent-text); font-weight: 800; font-size: 1.2rem; line-height: 1.2; }
+.roadmap--detail details[open] summary::after { content: "–"; }
+.roadmap--detail details p { margin: .4rem auto 0; max-width: 16rem; color: var(--muted); font-size: .9rem; }
+.roadmap-hint { color: var(--muted); font-size: .9rem; margin-top: 1rem; }
+@media (max-width: 560px) {
+  .roadmap--detail details summary::after { display: inline; margin-left: .4rem; }
+  .roadmap--detail details p { margin-left: 0; }
+}
