@@ -297,3 +297,4 @@ figcaption { font-size: .9rem; color: var(--muted); margin-top: .5rem; }
 .email-box { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2rem); box-shadow: var(--shadow); }
 .gallery--home { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 720px) { .gallery--home { grid-template-columns: repeat(2, 1fr); } }
+video.clip { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: var(--radius); background: #000; }
